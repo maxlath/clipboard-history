@@ -1,11 +1,15 @@
 #!/usr/bin/env node
 const fs  = require('fs')
 const { HOME } = process.env
+const historyPath = `${HOME}/.clipboard-history`
 // flag a: append to file instead of replacing
 // see http://stackoverflow.com/questions/3928926/how-to-create-appending-writestream-in-node-js#comment4194111_3929046
-const history = fs.createWriteStream(`${HOME}/.clipboard-history`, { flags: 'a'})
+const history = fs.createWriteStream(historyPath, { flags: 'a'})
 const { exec } = require('child_process')
+const maxLines = 10000
 var lastValue
+
+const truncateExcessiveLines = require('./truncate_excessive_lines')
 
 console.log(`starting ${new Date()}`)
 
@@ -19,4 +23,7 @@ const clipboard = function () {
   })
 }
 
-setInterval(clipboard, 500)
+const init = () => setInterval(clipboard, 500)
+
+// Truncate excessive lines, then init
+truncateExcessiveLines(historyPath, maxLines, init)
