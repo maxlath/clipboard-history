@@ -2,13 +2,13 @@
   "name": "clipboard-history",
   "version": "1.0.0",
   "description": "make your clipboard history available as a file",
-  "main": "index.js",
+  "main": "clipboard-history.js",
   "bin": {
-    "clipboard-history-start": "./index.js"
+    "clipboard-history-start": "./clipboard-history.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./index.js"
+    "start": "./clipboard-history.js"
   },
   "author": "maxlath",
   "license": "MIT"
