@@ -11,7 +11,7 @@ console.log(`starting ${new Date()}`)
 
 const clipboard = function () {
   exec('/usr/bin/xclip -o', (err, value) => {
-    if (err) return console.error(err)
+    if (err) return console.error(new Date(), err)
     if (value.length > 0 && value !== lastValue) {
       lastValue = value
       history.write(lastValue + '\n')
